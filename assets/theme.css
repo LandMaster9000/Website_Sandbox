@@ -1,0 +1,169 @@
+/* ===========================================================================
+   Cramers Landscaping - shared stylesheet for HTML-ported pages
+   ---------------------------------------------------------------------------
+   Paste this ONCE into Appearance > Customize > Additional CSS, replacing the
+   earlier .cl-page block. Every page built by build_html_page.py uses these
+   classes and carries no <style> of its own, so editing this file restyles
+   every ported page at once.
+
+   Divi pages are unaffected: every rule is scoped to .cl-page.
+
+   Values read off the live Divi site so ported pages match:
+     font    DM Sans, Helvetica, Arial, Lucida, sans-serif
+     body    16px / 1.7, #232324
+     h2      35px / 700, #111827
+     accent  #059669  (hover #047857)
+     width   1080px
+   =========================================================================== */
+
+.cl-page{
+  font-family:"DM Sans",Helvetica,Arial,Lucida,sans-serif;
+  font-size:16px; line-height:1.7; color:#232324;
+  max-width:none; padding:0;
+}
+.cl-wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+/* --- hero ---------------------------------------------------------------- */
+.cl-hero{
+  margin-left:calc(50% - 50vw); width:100vw; min-height:330px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding:72px 24px; background:#0a2016 center/cover no-repeat;
+}
+.cl-hero h1{color:#fff;font-size:40px;line-height:1.22;font-weight:800;margin:0 0 14px;max-width:900px}
+.cl-hero p{color:rgba(255,255,255,.9);font-size:15px;margin:0}
+
+/* --- sections ------------------------------------------------------------ */
+.cl-sec{padding:72px 0}
+.cl-sec.mint{background:#f1faf5;margin-left:calc(50% - 50vw);width:100vw}
+/* The green kicker line. It is now a SPAN emitted inside the <h2> at the
+   position it occupies on the live page - sometimes first ("Areas" / "We
+   Serve"), sometimes last ("Request a" / "Free Landscape Lighting" /
+   "Consultation") - so it must carry display:block to claim its own line.
+   A directly-matching rule beats the h2's inherited 35px/700, but keep the
+   .cl-page prefix so it also outranks .cl-page h2 (0,1,1) if that changes. */
+.cl-page .cl-eyebrow{display:block;color:#059669;font-size:16px;font-weight:500;
+  line-height:1.4;margin:0 0 2px}
+.cl-page h2{font-size:35px;line-height:1.15;font-weight:700;color:#111827;margin:0 0 18px}
+.cl-page h2 .g{color:#059669}
+.cl-center{text-align:center;max-width:720px;margin:0 auto 42px}
+.cl-center h2{margin-bottom:0}
+.cl-center p{margin-top:12px}
+
+/* --- two column ---------------------------------------------------------- */
+.cl-two{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
+.cl-two img{width:100%;height:auto;border-radius:10px;display:block}
+.cl-two.rev .cl-two-media{order:2}
+
+/* --- cards --------------------------------------------------------------- */
+.cl-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.cl-cards.two-up{grid-template-columns:repeat(2,1fr)}
+.cl-card{background:#fff;border-radius:16px;padding:30px 26px;box-shadow:0 6px 24px rgba(17,24,39,.07)}
+.cl-card.alt{background:linear-gradient(150deg,#34d399,#059669)}
+.cl-card.alt h3,.cl-card.alt p,.cl-card.alt summary{color:#fff}
+.cl-card.alt .cl-ico{background:rgba(255,255,255,.22)}
+.cl-card.alt summary::after{color:#fff}
+.cl-ico{width:86px;height:86px;border-radius:50%;background:#e8f7ef;display:flex;
+  align-items:center;justify-content:center;margin:0 0 20px}
+.cl-ico img{width:44px;height:44px;object-fit:contain}
+.cl-card h3{font-size:18px;font-weight:700;color:#111827;margin:0 0 8px}
+.cl-card p{font-size:15px;line-height:1.65;margin:0}
+.cl-cards.mid .cl-card{text-align:center}
+.cl-cards.mid .cl-ico{margin:0 auto 20px}
+
+/* --- collapsible cards --------------------------------------------------- */
+.cl-card details{margin:0}
+.cl-card summary{list-style:none;cursor:pointer;font-size:18px;font-weight:700;color:#111827;
+  display:flex;align-items:center;justify-content:space-between;gap:12px}
+.cl-card summary::-webkit-details-marker{display:none}
+.cl-card summary::after{content:"+";font-size:24px;font-weight:400;line-height:1;color:#059669;flex:0 0 auto}
+.cl-card details[open] summary::after{content:"\2013"}
+.cl-card details p{margin:12px 0 0;font-size:15px;line-height:1.65}
+
+/* --- image gallery -------------------------------------------------------
+   A section with two or more photos (the "Recent Works" strips). Auto-fit so
+   a 7-shot gallery fills rows evenly instead of leaving a ragged tail.      */
+.cl-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:18px;margin:28px 0 0}
+.cl-gallery.two{grid-template-columns:repeat(2,1fr)}
+.cl-gallery img{width:100%;height:240px;object-fit:cover;border-radius:10px;display:block}
+@media(max-width:600px){.cl-gallery,.cl-gallery.two{grid-template-columns:1fr}
+  .cl-gallery img{height:auto}}
+
+/* --- numbered steps ------------------------------------------------------ */
+.cl-steps{counter-reset:s;display:grid;gap:18px;margin:0;padding:0;list-style:none}
+.cl-steps li{counter-increment:s;position:relative;padding:22px 26px 22px 76px;background:#fff;
+  border-radius:12px;box-shadow:0 4px 16px rgba(17,24,39,.06)}
+.cl-steps li::before{content:counter(s);position:absolute;left:24px;top:22px;width:34px;height:34px;
+  border-radius:50%;background:#059669;color:#fff;font-weight:700;display:flex;
+  align-items:center;justify-content:center;font-size:15px}
+.cl-steps h3{margin:0 0 4px;font-size:17px}
+.cl-steps p{margin:0}
+
+/* --- before / after flip (pure CSS, no JS) -------------------------------
+   Specificity note: '.cl-flip img' is (0,1,1). Any rule that hides or shows
+   one of the images must match that or higher, or display:block wins and both
+   images render stacked. Keep the 'img.' prefixes below.                    */
+.cl-flip{position:relative;border-radius:10px;overflow:hidden;background:#111827}
+.cl-flip img{width:100%;height:auto}
+.cl-flip-cb{position:absolute;width:1px;height:1px;opacity:0;margin:0}
+.cl-flip img.cl-flip-a{display:block}
+.cl-flip img.cl-flip-b{display:none}
+.cl-flip-cb:checked ~ img.cl-flip-a{display:none}
+.cl-flip-cb:checked ~ img.cl-flip-b{display:block}
+.cl-flip-btn{position:absolute;top:50%;transform:translateY(-50%);width:56px;height:56px;
+  border-radius:50%;background:rgba(255,255,255,.95);display:flex;align-items:center;
+  justify-content:center;cursor:pointer;box-shadow:0 3px 12px rgba(0,0,0,.35);
+  font-size:26px;color:#065f46;-webkit-user-select:none;user-select:none;line-height:1}
+.cl-flip-btn:hover{background:#fff}
+.cl-flip-cb:focus ~ .cl-flip-btn{outline:3px solid #34d399;outline-offset:2px}
+.cl-flip-btn.next{right:14px;display:flex}
+.cl-flip-btn.prev{left:14px;display:none}
+.cl-flip-cb:checked ~ .cl-flip-btn.next{display:none}
+.cl-flip-cb:checked ~ .cl-flip-btn.prev{display:flex}
+.cl-flip-tag{position:absolute;bottom:14px;left:14px;padding:6px 12px;border-radius:5px;
+  font-size:12px;font-weight:700;color:#fff;background:rgba(17,24,39,.82)}
+.cl-flip-tag.b{display:none}
+.cl-flip-cb:checked ~ .cl-flip-tag.a{display:none}
+.cl-flip-cb:checked ~ .cl-flip-tag.b{display:block}
+.cl-flip-sim{position:absolute;top:14px;left:14px;padding:6px 12px;border-radius:5px;
+  font-size:12px;font-weight:700;color:#111827;background:rgba(255,255,255,.93);display:none}
+.cl-flip-cb:checked ~ .cl-flip-sim{display:block}
+.cl-note{font-size:13px;color:#6b7280;margin:10px 0 0}
+
+/* --- misc ---------------------------------------------------------------- */
+.cl-cost{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:34px}
+.cl-cost div{background:#fff;border-left:3px solid #059669;border-radius:10px;padding:22px 24px;
+  box-shadow:0 4px 16px rgba(17,24,39,.06)}
+.cl-cost h3{margin:0 0 6px;font-size:17px}
+.cl-cost p{margin:0;font-size:15px}
+.cl-areas{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 0;padding:0;list-style:none}
+.cl-areas li{background:#fff;border:1px solid #d7ece0;border-radius:999px;padding:8px 16px;font-size:14px}
+.cl-faq h3{margin:26px 0 6px;padding-top:22px;border-top:1px solid #e5e7eb;font-size:18px}
+.cl-faq h3:first-of-type{border-top:0;padding-top:0;margin-top:0}
+.cl-page ul.body,.cl-page ol.body{margin:0 0 18px;padding-left:22px}
+.cl-page ul.body li,.cl-page ol.body li{margin-bottom:7px}
+.cl-page a{color:#059669;text-decoration:underline}
+.cl-page a:hover{color:#047857}
+.cl-page img{max-width:100%;height:auto}
+
+/* --- call to action ------------------------------------------------------ */
+.cl-cta{background:linear-gradient(150deg,#065f46,#059669);border-radius:16px;
+  padding:46px 44px;text-align:center}
+.cl-cta h2,.cl-cta p{color:#fff}
+.cl-cta p{max-width:660px;margin:0 auto 22px}
+.cl-button{display:inline-block;background:#fff;color:#065f46;font-weight:700;
+  text-decoration:none;padding:15px 34px;border-radius:8px}
+.cl-page a.cl-button{text-decoration:none}
+.cl-button:hover{background:#ecfdf5;color:#065f46}
+
+/* --- phone --------------------------------------------------------------- */
+@media(max-width:900px){
+  .cl-two{grid-template-columns:1fr;gap:28px}
+  .cl-two.rev .cl-two-media{order:0}
+  .cl-cards,.cl-cards.two-up{grid-template-columns:1fr}
+  .cl-cost{grid-template-columns:1fr}
+  .cl-hero h1{font-size:29px}
+  .cl-page h2{font-size:26px}
+  .cl-sec{padding:48px 0}
+  .cl-cta{padding:34px 24px}
+}
