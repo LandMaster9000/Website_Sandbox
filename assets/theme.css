@@ -185,3 +185,35 @@
   .cl-sec{padding:48px 0}
   .cl-cta{padding:34px 24px}
 }
+
+/* --- bottom-of-page contact block ----------------------------------------
+   Plain text in two columns. Replaces the click-to-expand contact cards,
+   which repeated the same four details three times because Divi hid two of
+   the copies with CSS that the porter could not see.                       */
+.cl-contact{display:grid;grid-template-columns:1fr 1fr;gap:26px 52px;margin:30px 0 0}
+.cl-contact h3{margin:0 0 4px;font-size:16px;font-weight:700;color:#111827}
+.cl-contact p{margin:0;font-size:16px;line-height:1.7;color:#232324}
+.cl-contact a{color:#059669}
+@media(max-width:700px){.cl-contact{grid-template-columns:1fr;gap:20px}}
+
+/* --- quote form ----------------------------------------------------------
+   A visual replica of WPForms #1123. It does not submit: a static page has no
+   backend, and wiring it up would either fail silently or send real enquiries
+   from a preview. The note under the button says so on the page.           */
+.cl-form{max-width:640px;margin:26px 0 0}
+.cl-form-row{margin:0 0 16px}
+.cl-form label{display:block;margin:0 0 6px;font-size:15px;font-weight:700;color:#111827}
+.cl-form .req{color:#dc2626}
+.cl-form input,.cl-form textarea{width:100%;padding:11px 13px;font:inherit;font-size:15px;
+  color:#232324;background:#fff;border:1px solid #d7ece0;border-radius:8px}
+.cl-form input:focus,.cl-form textarea:focus{outline:2px solid #059669;outline-offset:1px;
+  border-color:#059669}
+.cl-form textarea{resize:vertical;min-height:110px}
+.cl-form-split{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cl-form-split .sub{display:block;margin:4px 0 0;font-size:13px;color:#6b7280}
+.cl-form button.cl-button{border:0;cursor:pointer;font-size:16px}
+.cl-form-note{margin:10px 0 0;font-size:13px;color:#6b7280}
+@media(max-width:600px){.cl-form-split{grid-template-columns:1fr}}
+
+/* --- divider -------------------------------------------------------------- */
+.cl-divider{border:0;border-top:1px solid #e5e7eb;margin:34px 0}
