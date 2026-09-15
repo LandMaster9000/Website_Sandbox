@@ -1,0 +1,113 @@
+/* ===========================================================================
+   Cramers Landscaping - site chrome (header, nav, footer)
+
+   This file is NOT part of the WordPress stylesheet. In WordPress the header
+   and footer come from the Divi Theme Builder; only theme.css goes into
+   Additional CSS. This exists so the sandbox renders a complete page.
+
+   Every value was measured off the live site at a 1440px viewport
+   (1425px usable), not estimated:
+     content column   80% of viewport, max 1600px  -> 1140px at 1425px
+     header           133px tall, transparent, overlaying the hero
+     logo             312 x 47 in the header, 319 x 48 in the footer
+     nav link         16px / 300 / #fff, li padding 0 11px, a padding 31px 0
+     Contact button   #059669, radius 25px, padding 14px, 16px / 300
+     footer           #111827, 57px top and bottom padding
+     footer heading   18px / 500 / #fff
+     footer link      16px / 500 / #9ca3af, 26px line-height, 10px gap
+     social icon      40 x 40, radius 25px, rgba(255,255,255,.1)
+   =========================================================================== */
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:#fff;font-family:"DM Sans",Helvetica,Arial,Lucida,sans-serif;
+  font-size:16px;line-height:1.7;color:#232324}
+.wrap{width:80%;max-width:1600px;margin:0 auto}
+
+/* --- header: transparent, sits ON TOP of the hero ------------------------ */
+.site-head{position:absolute;top:0;left:0;right:0;z-index:50;height:133px}
+.site-head .wrap{display:flex;align-items:center;justify-content:space-between;height:133px}
+.site-logo img{width:312px;height:auto;display:block}
+
+.site-nav{display:flex;align-items:stretch;list-style:none;margin:0;padding:0}
+.site-nav > li{padding:0 11px;position:relative;display:flex;align-items:center}
+.site-nav > li > a{display:block;padding:31px 0;color:#fff;font-size:16px;
+  font-weight:300;line-height:14px;text-decoration:none;white-space:nowrap}
+.site-nav > li > a:hover{opacity:.75}
+.site-nav .btn > a{background:#059669;color:#fff;border-radius:25px;padding:14px;
+  line-height:14px}
+.site-nav .btn > a:hover{background:#047857;opacity:1}
+
+/* Services mega menu. Divi opens it on hover with a fade; :hover plus
+   focus-within gives the same behaviour with no JavaScript.               */
+.mega{position:absolute;top:100%;right:0;display:grid;
+  grid-template-columns:repeat(4,minmax(190px,1fr));gap:26px;
+  background:#fff;border-radius:12px;padding:26px 28px;
+  box-shadow:0 18px 50px rgba(17,24,39,.22);
+  opacity:0;visibility:hidden;transform:translateY(6px);
+  transition:opacity .18s ease,transform .18s ease,visibility .18s;}
+.site-nav > li:hover > .mega,
+.site-nav > li:focus-within > .mega{opacity:1;visibility:visible;transform:none}
+.mega img{width:42px;height:42px;object-fit:contain;margin:0 0 12px}
+.mega ul{list-style:none;margin:0;padding:0}
+.mega li{margin:0 0 7px}
+.mega a{color:#232324;font-size:14px;line-height:1.45;text-decoration:none;display:block}
+.mega a:hover{color:#059669}
+.mega li:first-child > a{font-weight:700}
+
+/* --- footer -------------------------------------------------------------- */
+.site-foot{background:#111827;padding:57px 0;color:#9ca3af}
+.foot-top{display:grid;grid-template-columns:1.87fr 1fr 1fr 1fr;
+  column-gap:8.1%;align-items:start}
+.foot-logo img{width:319px;height:auto;display:block;margin:0 0 18px}
+.foot-about p{margin:0 0 20px;font-size:16px;line-height:27.2px;color:#9ca3af}
+.site-foot h4{margin:0 0 16px;font-size:18px;font-weight:500;color:#fff;
+  font-family:inherit}
+.site-foot ul{list-style:none;margin:0;padding:0}
+.site-foot ul li{margin:0 0 10px}
+.site-foot ul a{color:#9ca3af;font-size:16px;font-weight:500;line-height:26px;
+  text-decoration:none}
+.site-foot ul a:hover{color:#fff}
+.social{display:flex;gap:10px;margin:0;padding:0;list-style:none}
+.social a{width:40px;height:40px;border-radius:25px;background:rgba(255,255,255,.1);
+  display:flex;align-items:center;justify-content:center;color:#fff;
+  text-decoration:none;font-size:15px;font-weight:700}
+.social a:hover{background:rgba(255,255,255,.2)}
+.foot-bottom{margin-top:44px;padding-top:24px;border-top:1px solid rgba(255,255,255,.08)}
+.foot-bottom p{margin:0;font-size:16px;color:#9ca3af}
+
+/* --- sandbox-only strip. Prefixed .sbx so it cannot touch the replica. --- */
+.sbx{position:sticky;top:0;z-index:200;display:flex;align-items:center;gap:10px;
+  flex-wrap:wrap;padding:8px 16px;background:#1e293b;color:#e2e8f0;
+  font:500 12px/1.4 "DM Sans",system-ui,sans-serif}
+.sbx a{color:#e2e8f0;text-decoration:none;padding:4px 9px;border-radius:5px;
+  background:rgba(255,255,255,.08);white-space:nowrap}
+.sbx a:hover{background:rgba(255,255,255,.18)}
+.sbx a.on{background:#059669;color:#fff}
+.sbx .lbl{font-weight:700;white-space:nowrap;opacity:.75}
+.sbx .live{background:#059669;color:#fff;font-weight:700;margin-left:auto}
+
+.idx{width:80%;max-width:900px;margin:0 auto;padding:54px 0 80px}
+.idx h1{font-size:34px;line-height:1.15;margin:0 0 10px;color:#111827}
+.idx p{color:#475569;margin:0 0 30px}
+.idx code{background:#f1f5f9;padding:2px 6px;border-radius:4px;font-size:14px}
+.idx-list{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.idx-list li{display:flex;align-items:center;gap:12px;border:1px solid #e2e8f0;
+  border-radius:12px;padding:16px 20px}
+.idx-list li:hover{border-color:#059669}
+.idx-list a{flex:1;text-decoration:none;color:inherit}
+.idx-list strong{display:block;font-size:17px;color:#111827}
+.idx-list span{font-size:13px;color:#94a3b8}
+.idx-list a.live{flex:0 0 auto;font-size:13px;font-weight:700;color:#059669}
+
+@media(max-width:1100px){
+  .site-head,.site-head .wrap{height:auto}
+  .site-head{position:static;background:#0f172a}
+  .site-head .wrap{flex-direction:column;gap:12px;padding:16px 0}
+  .site-nav{flex-wrap:wrap;justify-content:center}
+  .mega{position:static;opacity:1;visibility:visible;transform:none;
+    grid-template-columns:1fr 1fr;box-shadow:none;display:none}
+  .foot-top{grid-template-columns:1fr 1fr;row-gap:34px;column-gap:26px}
+  .site-logo img,.foot-logo img{width:240px}
+}
+@media(max-width:640px){.foot-top{grid-template-columns:1fr}}

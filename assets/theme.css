@@ -23,14 +23,30 @@
 }
 .cl-wrap{max-width:1080px;margin:0 auto;padding:0 24px}
 
-/* --- hero ---------------------------------------------------------------- */
+/* --- hero ----------------------------------------------------------------
+   Measured off the live Divi page at 1440px, not eyeballed:
+     padding      180px top / 80px bottom
+     overlay      linear-gradient(90deg, rgba(0,0,0,.5) 50%, transparent 100%)
+                  - a LEFT-TO-RIGHT fade, not a flat wash over the whole image
+     h1           40px / 800 / 50px line-height, white, centred
+     breadcrumb   20px / 300, white, 31px below the h1
+     text column  80% of the viewport, max 1600px                            */
 .cl-hero{
-  margin-left:calc(50% - 50vw); width:100vw; min-height:330px;
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  text-align:center; padding:72px 24px; background:#0a2016 center/cover no-repeat;
+  margin-left:calc(50% - 50vw); width:100vw;
+  padding:180px 0 80px; text-align:center;
+  background:linear-gradient(90deg,rgba(0,0,0,.5) 50%,rgba(255,255,255,0) 100%),
+             #0a2016 center/cover no-repeat;
 }
-.cl-hero h1{color:#fff;font-size:40px;line-height:1.22;font-weight:800;margin:0 0 14px;max-width:900px}
-.cl-hero p{color:rgba(255,255,255,.9);font-size:15px;margin:0}
+.cl-hero h1{
+  width:80%; max-width:1600px; margin:0 auto;
+  color:#fff; font-size:40px; line-height:50px; font-weight:800;
+}
+.cl-hero .cl-crumb{
+  width:80%; max-width:1600px; margin:31px auto 0;
+  color:#fff; font-size:20px; font-weight:300; line-height:30px;
+}
+.cl-hero .cl-crumb a{color:#fff;text-decoration:none}
+.cl-hero .cl-crumb a:hover{text-decoration:underline}
 
 /* --- sections ------------------------------------------------------------ */
 .cl-sec{padding:72px 0}
@@ -162,7 +178,9 @@
   .cl-two.rev .cl-two-media{order:0}
   .cl-cards,.cl-cards.two-up{grid-template-columns:1fr}
   .cl-cost{grid-template-columns:1fr}
-  .cl-hero h1{font-size:29px}
+  .cl-hero{padding:120px 0 56px}
+  .cl-hero h1{font-size:29px;line-height:36px}
+  .cl-hero .cl-crumb{font-size:16px;margin-top:18px}
   .cl-page h2{font-size:26px}
   .cl-sec{padding:48px 0}
   .cl-cta{padding:34px 24px}
