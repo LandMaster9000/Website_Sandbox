@@ -37,16 +37,50 @@
   background:linear-gradient(90deg,rgba(0,0,0,.5) 50%,rgba(255,255,255,0) 100%),
              #0a2016 center/cover no-repeat;
 }
+.cl-hero-inner{width:80%; max-width:1600px; margin:0 auto}
 .cl-hero h1{
-  width:80%; max-width:1600px; margin:0 auto;
+  margin:0;
   color:#fff; font-size:40px; line-height:50px; font-weight:800;
 }
 .cl-hero .cl-crumb{
-  width:80%; max-width:1600px; margin:31px auto 0;
+  margin:31px 0 0;
   color:#fff; font-size:20px; font-weight:300; line-height:30px;
 }
 .cl-hero .cl-crumb a{color:#fff;text-decoration:none}
 .cl-hero .cl-crumb a:hover{text-decoration:underline}
+
+/* The homepage hero is the ONE page that differs: Divi puts its content in a
+   half-width column (et_pb_column_1_2), left aligned, with a sub-heading and
+   two CTA buttons under the h1 - all of it one block over the photo. Every
+   other page is a full-width centred h1 plus breadcrumb, which is the rule
+   above. Measured at 1024px: column 381 of a 807 row = 47.25%.            */
+.cl-hero.split{text-align:left}
+.cl-hero.split .cl-hero-inner{display:grid;grid-template-columns:minmax(0,47.25%)}
+.cl-hero.split p{margin:22px 0 0;color:#fff;font-size:20px;font-weight:300;line-height:30px}
+.cl-hero.split .ib-kk-home-btn-container{margin-top:22px}
+@media(max-width:980px){
+  .cl-hero.split .cl-hero-inner{grid-template-columns:minmax(0,100%)}
+}
+
+/* The two hero CTA buttons. Divi ships these as a code module with its own
+   <style>, which the porter strips along with the rest of the module's CSS,
+   so the rules live here instead. Values read off the live button, and the
+   .cl-page prefix keeps them ahead of the generic green underlined link. */
+.cl-page .ib-kk-home-btn-container{display:flex;flex-direction:row;gap:20px;flex-wrap:wrap}
+.cl-page .ib-kk-home-btn-1,.cl-page .ib-kk-home-btn-2{
+  border-radius:25px;padding:12px 30px;font-size:16px;font-weight:500}
+.cl-page .ib-kk-home-btn-1{background:#059669;display:flex;align-items:center;
+  justify-content:center;gap:10px}
+.cl-page .ib-kk-home-btn-2{background:rgba(255,255,255,.2)}
+.cl-page .ib-kk-home-btn-1 a,.cl-page .ib-kk-home-btn-2 a{
+  display:flex;align-items:center;gap:10px;
+  color:#fff;text-decoration:none;font-size:16px;font-weight:500}
+.cl-page .ib-kk-home-btn-1:hover{background:#047857}
+.cl-page .ib-kk-home-btn-2:hover{background:rgba(255,255,255,.3)}
+.cl-page .ib-kk-home-btn-1 img{width:24px;height:24px;display:block;flex:none}
+@media(max-width:556px){
+  .cl-page .ib-kk-home-btn-container{flex-direction:column}
+}
 
 /* --- sections ------------------------------------------------------------ */
 .cl-sec{padding:72px 0}
