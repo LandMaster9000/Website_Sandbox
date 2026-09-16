@@ -104,6 +104,22 @@
 .cl-two img{width:100%;height:auto;border-radius:10px;display:block}
 .cl-two.rev .cl-two-media{order:2}
 
+/* --- process steps: photo beside a 2x2 grid of coloured cards --------------
+   Homepage "Quality-Driven Process". Divi specialty section: the photo is
+   620px tall with 20px corners; each card is an inner column with its own
+   background colour (set inline from the source), 25px/20px padding.
+   .cl-page prefixes keep these ahead of the generic .cl-two img / p rules. */
+.cl-two.steps{align-items:stretch}
+.cl-page .cl-two.steps .cl-two-media img{height:100%;border-radius:20px;object-fit:cover}
+.cl-page .cl-two.steps h3{font-size:22px;font-weight:600;color:#013f2b;margin:0 0 12px}
+.cl-steps{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-top:24px}
+.cl-step{border-radius:20px;padding:25px 20px}
+.cl-page .cl-step h4{display:flex;align-items:center;gap:15px;margin:0 0 14px;font-size:18px;
+  font-weight:600;line-height:1.2;color:#fff}
+.cl-page .cl-step h4 img{width:41px;height:41px;flex:0 0 41px;object-fit:contain;border-radius:0}
+.cl-page .cl-step p{margin:0;color:#fff;font-size:16px;font-weight:500;line-height:1.7}
+@media(max-width:600px){.cl-steps{grid-template-columns:1fr;gap:20px}}
+
 /* --- cards --------------------------------------------------------------- */
 /* align-items:start so a card is only as tall as its own content. Grid
    stretches items by default, so opening one collapsible used to drag its
