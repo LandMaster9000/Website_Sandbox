@@ -107,9 +107,26 @@
 /* --- cards --------------------------------------------------------------- */
 /* align-items:start so a card is only as tall as its own content. Grid
    stretches items by default, so opening one collapsible used to drag its
-   two neighbours to the same height and leave them mostly empty.          */
-.cl-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;align-items:start}
-.cl-cards.two-up{grid-template-columns:repeat(2,1fr)}
+   two neighbours to the same height and leave them mostly empty.
+
+   Six columns, each card spanning two, rather than three columns. The
+   arithmetic is identical - with the same gap g, 2 of 6 columns comes to
+   (W-2g)/3, exactly one of 3 columns - but half-column positions become
+   expressible, and that is what centring a short last row needs. Five cards
+   used to leave the last two hard against the left edge with a card-shaped
+   hole on the right; 33 of the 46 grids on the site are ragged like that.  */
+.cl-cards{display:grid;grid-template-columns:repeat(6,1fr);gap:26px;align-items:start}
+.cl-cards > *{grid-column:span 2}
+.cl-cards.two-up{grid-template-columns:repeat(4,1fr)}
+
+/* A last row of one starts at column 3, a last row of two at column 2 -
+   both symmetric about the middle. :nth-child(3n+1) is what identifies
+   them: if the count leaves one over, the last card sits at a 3n+1
+   position; if it leaves two, the second-to-last does. No count has to be
+   known in advance, so this holds however many cards a page ends up with. */
+.cl-cards > :last-child:nth-child(3n+1){grid-column:3/span 2}
+.cl-cards > :nth-last-child(2):nth-child(3n+1){grid-column:2/span 2}
+.cl-cards.two-up > :last-child:nth-child(2n+1){grid-column:2/span 2}
 .cl-card{background:#fff;border-radius:16px;padding:30px 26px;box-shadow:0 6px 24px rgba(17,24,39,.07)}
 .cl-card.alt{background:linear-gradient(150deg,#34d399,#059669)}
 .cl-card.alt h3,.cl-card.alt p,.cl-card.alt summary{color:#fff}
@@ -393,7 +410,13 @@
 @media(max-width:900px){
   .cl-two{grid-template-columns:1fr;gap:28px}
   .cl-two.rev .cl-two-media{order:0}
+  /* one per row: clear the spans too, or grid-column:span 2 invents a
+     second implicit column and the cards go back to being half-width    */
   .cl-cards,.cl-cards.two-up{grid-template-columns:1fr}
+  .cl-cards > *,
+  .cl-cards > :last-child:nth-child(3n+1),
+  .cl-cards > :nth-last-child(2):nth-child(3n+1),
+  .cl-cards.two-up > :last-child:nth-child(2n+1){grid-column:1/-1}
   .cl-cost{grid-template-columns:1fr}
   .cl-hero{padding:120px 0 56px}
   .cl-hero h1{font-size:29px;line-height:36px}
