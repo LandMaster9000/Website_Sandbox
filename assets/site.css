@@ -70,8 +70,8 @@ body{background:#fff;font-family:"DM Sans",Helvetica,Arial,Lucida,sans-serif;
 .site-foot ul a:hover{color:#fff}
 .social{display:flex;gap:10px;margin:0;padding:0;list-style:none}
 .social a{width:40px;height:40px;border-radius:25px;background:rgba(255,255,255,.1);
-  display:flex;align-items:center;justify-content:center;color:#fff;
-  text-decoration:none;font-size:15px;font-weight:700}
+  display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none}
+.social svg{width:19px;height:19px;fill:currentColor;display:block}
 .social a:hover{background:rgba(255,255,255,.2)}
 .foot-bottom{margin-top:44px;padding-top:24px;border-top:1px solid rgba(255,255,255,.08)}
 .foot-bottom p{margin:0;font-size:16px;color:#9ca3af}
