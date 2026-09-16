@@ -105,7 +105,10 @@
 .cl-two.rev .cl-two-media{order:2}
 
 /* --- cards --------------------------------------------------------------- */
-.cl-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+/* align-items:start so a card is only as tall as its own content. Grid
+   stretches items by default, so opening one collapsible used to drag its
+   two neighbours to the same height and leave them mostly empty.          */
+.cl-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;align-items:start}
 .cl-cards.two-up{grid-template-columns:repeat(2,1fr)}
 .cl-card{background:#fff;border-radius:16px;padding:30px 26px;box-shadow:0 6px 24px rgba(17,24,39,.07)}
 .cl-card.alt{background:linear-gradient(150deg,#34d399,#059669)}
@@ -120,14 +123,25 @@
 .cl-cards.mid .cl-card{text-align:center}
 .cl-cards.mid .cl-ico{margin:0 auto 20px}
 
-/* --- collapsible cards --------------------------------------------------- */
+/* --- collapsible cards ---------------------------------------------------
+   The icon sits inside the summary, so a collapsed card is one row:
+   icon | title | + . It used to be a block above the title - an 86px circle
+   with 20px under it - which meant every card led with a band of empty space
+   and three of them made a wall of it. The icon is 54px here because it is
+   sharing a line rather than heading one.                                  */
 .cl-card details{margin:0}
-.cl-card summary{list-style:none;cursor:pointer;font-size:18px;font-weight:700;color:#111827;
-  display:flex;align-items:center;justify-content:space-between;gap:12px}
+.cl-card summary{list-style:none;cursor:pointer;font-size:17px;font-weight:700;color:#111827;
+  display:flex;align-items:center;gap:12px;line-height:1.3}
 .cl-card summary::-webkit-details-marker{display:none}
+.cl-card summary .cl-ico{width:46px;height:46px;flex:0 0 46px;margin:0}
+.cl-card summary .cl-ico img{width:24px;height:24px}
+/* takes the free space so the + stays pinned right. A bare text node cannot
+   be given flex:1, which is why the title is wrapped at build time.        */
+.cl-card summary .cl-t{flex:1 1 auto}
 .cl-card summary::after{content:"+";font-size:24px;font-weight:400;line-height:1;color:#059669;flex:0 0 auto}
 .cl-card details[open] summary::after{content:"\2013"}
-.cl-card details p{margin:12px 0 0;font-size:15px;line-height:1.65}
+.cl-card details p{margin:14px 0 0;font-size:15px;line-height:1.65}
+.cl-cards.mid .cl-card:has(details){text-align:left}
 
 /* --- image gallery -------------------------------------------------------
    A section with two or more photos (the "Recent Works" strips). Auto-fit so
