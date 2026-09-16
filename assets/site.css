@@ -29,31 +29,65 @@ body{background:#fff;font-family:"DM Sans",Helvetica,Arial,Lucida,sans-serif;
 .site-head .wrap{display:flex;align-items:center;justify-content:space-between;height:133px}
 .site-logo img{width:312px;height:auto;display:block}
 
-.site-nav{display:flex;align-items:stretch;list-style:none;margin:0;padding:0}
-.site-nav > li{padding:0 11px;position:relative;display:flex;align-items:center}
-.site-nav > li > a{display:block;padding:31px 0;color:#fff;font-size:16px;
-  font-weight:300;line-height:14px;text-decoration:none;white-space:nowrap}
-.site-nav > li > a:hover{opacity:.75}
-.site-nav .btn > a{background:#059669;color:#fff;border-radius:25px;padding:14px;
-  line-height:14px}
+.site-nav{display:flex;align-items:center;list-style:none;margin:0;padding:0;gap:10px}
+.site-nav > li{position:relative;display:flex;align-items:center}
+.site-nav > li > a{display:block;color:#fff;font-size:16px;font-weight:300;
+  line-height:14px;text-decoration:none;white-space:nowrap}
+
+/* Every item is a pill. The four navigation items sit on a translucent grey
+   so they read as buttons against whatever hero photo is behind them; Contact
+   Us keeps the solid green. The grey is white at low alpha rather than a flat
+   colour, so it works over a dark photo and over the mint header alike.     */
+.site-nav .pill > a{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);
+  border-radius:25px;padding:13px 20px;backdrop-filter:blur(2px)}
+.site-nav .pill > a:hover{background:rgba(255,255,255,.28);opacity:1}
+.site-nav .btn > a{background:#059669;border:1px solid #059669;color:#fff;
+  border-radius:25px;padding:13px 22px;line-height:14px}
 .site-nav .btn > a:hover{background:#047857;opacity:1}
 
-/* Services mega menu. Divi opens it on hover with a fade; :hover plus
-   focus-within gives the same behaviour with no JavaScript.               */
-.mega{position:absolute;top:100%;right:0;display:grid;
-  grid-template-columns:repeat(4,minmax(190px,1fr));gap:26px;
-  background:#fff;border-radius:12px;padding:26px 28px;
+/* Services dropdown. Four hubs now, not twenty-four links, so it is a single
+   column instead of a four-column grid. Divi opens it on hover with a fade;
+   :hover plus focus-within gives the same behaviour with no JavaScript.
+   The padded top gap keeps the menu reachable: the pointer crosses it on the
+   way down, and a real gap would close the menu mid-travel.                */
+.mega{position:absolute;top:100%;right:0;min-width:268px;
+  background:#fff;border-radius:12px;padding:10px;margin-top:10px;
   box-shadow:0 18px 50px rgba(17,24,39,.22);
   opacity:0;visibility:hidden;transform:translateY(6px);
-  transition:opacity .18s ease,transform .18s ease,visibility .18s;}
+  transition:opacity .18s ease,transform .18s ease,visibility .18s}
+.mega::before{content:"";position:absolute;left:0;right:0;top:-14px;height:14px}
 .site-nav > li:hover > .mega,
 .site-nav > li:focus-within > .mega{opacity:1;visibility:visible;transform:none}
-.mega img{width:42px;height:42px;object-fit:contain;margin:0 0 12px}
 .mega ul{list-style:none;margin:0;padding:0}
-.mega li{margin:0 0 7px}
-.mega a{color:#232324;font-size:14px;line-height:1.45;text-decoration:none;display:block}
-.mega a:hover{color:#059669}
-.mega li:first-child > a{font-weight:700}
+.mega li{margin:0}
+.mega a{display:flex;align-items:center;gap:12px;color:#232324;font-size:15px;
+  font-weight:500;line-height:1.35;text-decoration:none;padding:11px 12px;border-radius:8px}
+.mega a:hover{color:#059669;background:#f3f6f4}
+.mega img{width:30px;height:30px;object-fit:contain;flex:0 0 30px;margin:0}
+
+/* --- subcategory tabs ----------------------------------------------------
+   A hub page and its subcategories share this strip, so you can move between
+   siblings without going back up to the menu. They are ordinary links to the
+   real pages - the tabs do not swap panels in place, because merging the
+   subcategories into one page would retire the URLs that carry the site's
+   search impressions. The current page is marked with aria-current, which is
+   also what styles it, so the markup says what the colour says.
+   It scrolls sideways rather than wrapping on a narrow screen.             */
+.cl-tabs{background:#f3f6f4;border-bottom:1px solid #e2e8e5}
+.cl-tabs ul{display:flex;gap:4px;list-style:none;margin:0;padding:0;
+  overflow-x:auto;scrollbar-width:none}
+.cl-tabs ul::-webkit-scrollbar{display:none}
+.cl-tabs li{flex:0 0 auto}
+.cl-page .cl-tabs a{display:block;padding:16px 18px;color:#4b5563;font-size:15px;
+  font-weight:500;line-height:1.2;text-decoration:none;white-space:nowrap;
+  border-bottom:3px solid transparent}
+.cl-page .cl-tabs a:hover{color:#059669;background:#eaf1ed;text-decoration:none}
+.cl-page .cl-tabs a[aria-current="page"]{color:#059669;font-weight:700;
+  border-bottom-color:#059669;background:#fff}
+/* .cl-page a in theme.css underlines every link in the page body and sits
+   later in the cascade at the same specificity, so these are scoped under
+   .cl-page to outrank it. Same collision that left the gallery images
+   unsized: equal specificity, later rule wins.                            */
 
 /* --- footer -------------------------------------------------------------- */
 .site-foot{background:#111827;padding:57px 0;color:#9ca3af}
@@ -118,7 +152,7 @@ body{background:#fff;font-family:"DM Sans",Helvetica,Arial,Lucida,sans-serif;
   .site-head{position:static;background:#0f172a}
   .site-head .wrap{flex-direction:column;gap:12px;padding:16px 0}
   .site-nav{flex-wrap:wrap;justify-content:center}
-  .mega{position:static;opacity:1;visibility:visible;transform:none;
+  .mega{position:static;opacity:1;visibility:visible;transform:none;min-width:0;margin-top:0;
     grid-template-columns:1fr 1fr;box-shadow:none;display:none}
   .site-logo img,.foot-logo img{width:240px}
 }
@@ -126,3 +160,9 @@ body{background:#fff;font-family:"DM Sans",Helvetica,Arial,Lucida,sans-serif;
   .foot-top{grid-template-columns:1fr 1fr;row-gap:34px;column-gap:26px}
 }
 @media(max-width:640px){.foot-top{grid-template-columns:1fr}}
+
+@media(max-width:980px){
+  .site-nav{gap:8px}
+  .site-nav .pill > a,.site-nav .btn > a{padding:11px 16px}
+  .cl-tabs a{padding:14px 14px;font-size:14px}
+}
