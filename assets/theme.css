@@ -155,6 +155,41 @@
   flex:none;display:block}
 .cl-areas li{display:flex;align-items:center;gap:8px}
 
+/* --- blog archive ---------------------------------------------------------
+   Matched to the live archive at 1024px: the row splits 57.9% post column /
+   29.2% sidebar with 12.9% between (Divi 3_5 + 2_5). Featured image fills the
+   column at 300px, cover. Title 30/700/45 #111827, excerpt 18/28 #232324,
+   "read more" #059669 18/700 underlined, 42px between posts.
+
+   The live archive paginates at 10 with an "Older Entries" link; this lists
+   every post instead, because a static page cannot paginate without JS and a
+   dead link is worse than a longer list.                                    */
+.cl-blog{display:grid;grid-template-columns:57.9% 29.2%;gap:12.9%;align-items:start}
+.cl-post{margin:0 0 42px}
+.cl-post:last-child{margin-bottom:0}
+.cl-post-img{display:block}
+.cl-page .cl-post-img img{width:100%;height:300px;object-fit:cover;display:block;border-radius:0}
+.cl-page .cl-post h2{font-size:30px;line-height:45px;font-weight:700;color:#111827;
+  margin:30px 0 15px}
+.cl-page .cl-post h2 a{color:#111827;text-decoration:none}
+.cl-page .cl-post h2 a:hover{color:#059669}
+.cl-post p{margin:0;font-size:18px;line-height:28px;color:#232324}
+.cl-page a.cl-more{display:block;margin:10px 0 0;color:#059669;font-size:18px;
+  font-weight:700;text-decoration:underline}
+
+.cl-blog-side h3{margin:30px 0 15px;font-size:22px;font-weight:800;color:#111827}
+.cl-blog-side h3:first-child{margin-top:0}
+.cl-blog-side ul{list-style:none;margin:0;padding:0}
+.cl-blog-side li{margin:0 0 8px;font-size:16px;line-height:27.2px}
+.cl-page .cl-blog-side a{color:#232324;text-decoration:none}
+.cl-page .cl-blog-side a:hover{color:#059669}
+.cl-side-search input{width:100%;padding:10px 14px;font:inherit;font-size:14px;
+  border:1px solid rgba(27,22,31,.6);border-radius:10px;background:#fff}
+@media(max-width:900px){
+  .cl-blog{grid-template-columns:1fr;gap:48px}
+  .cl-page .cl-post h2{font-size:24px;line-height:34px}
+}
+
 /* --- image carousel ------------------------------------------------------
    Every gallery is a one-at-a-time carousel with a left and a right arrow.
    There is no JavaScript on this site, so it runs on radio inputs: each slide
@@ -364,3 +399,100 @@
 
 /* --- divider -------------------------------------------------------------- */
 .cl-divider{border:0;border-top:1px solid #e5e7eb;margin:34px 0}
+
+
+/* == WORDPRESS-ONLY: archive header fix ======================================
+   These rules are for the WordPress copy of this stylesheet only (the one
+   pasted into Appearance > Customize > Additional CSS). They target Divi's
+   .et_pb_* classes, which do not exist in the static replica, so they are
+   inert here - they ride along so that one paste carries the fix.
+   Full explanation in scripts/wp_archive_header_fix.css.
+   ====================================================================== */
+.et_pb_stickydiv.et_pb_section.et_pb_section_0_tb_header,
+.et_pb_stickydiv.et_pb_section.et_pb_section_1_tb_header{background-image:initial !important}
+.et_pb_section_0_tb_header,.et_pb_section_1_tb_header{margin:0;width:100%}
+.et_pb_section_0_tb_header.et_pb_section,.et_pb_section_1_tb_header.et_pb_section{padding:0;background-color:rgba(255,255,255,0) !important}
+div.et_pb_section.et_pb_section_0_tb_header,div.et_pb_section.et_pb_section_1_tb_header{transition:background-color 300ms,background-image 300ms}
+.et_pb_sticky.et_pb_section_0_tb_header.et_pb_section,.et_pb_sticky.et_pb_section_1_tb_header.et_pb_section{background-color:#059669 !important}
+.et_pb_row_0_tb_header,.et_pb_row_1_tb_header{background-color:rgba(255,255,255,0);transition:padding 300ms}
+.et_pb_sticky .et_pb_row_0_tb_header,.et_pb_sticky .et_pb_row_1_tb_header{padding-top:10px !important;padding-bottom:10px !important}
+
+.et_pb_menu_0_tb_header.et_pb_menu ul li a,
+.et_pb_menu_2_tb_header.et_pb_menu ul li a{font-family:"DM Sans",Helvetica,Arial,Lucida,sans-serif;font-weight:300;font-size:16px;color:#fff !important}
+.et_pb_menu_0_tb_header.et_pb_menu,.et_pb_menu_2_tb_header.et_pb_menu,
+.et_pb_column_0_tb_header,.et_pb_column_1_tb_header{background-color:rgba(255,255,255,0)}
+.et_pb_menu_0_tb_header.et_pb_menu ul li a,.et_pb_menu_0_tb_header.et_pb_menu .nav li ul a,
+.et_pb_menu_0_tb_header.et_pb_menu .nav li ul li.current-menu-item a,
+.et_pb_menu_2_tb_header.et_pb_menu ul li a,.et_pb_menu_2_tb_header.et_pb_menu .nav li ul a,
+.et_pb_menu_2_tb_header.et_pb_menu .nav li ul li.current-menu-item a{transition:color 300ms}
+.et_pb_menu_0_tb_header.et_pb_menu ul li.current-menu-item a,
+.et_pb_menu_2_tb_header.et_pb_menu ul li.current-menu-item a{color:#fff !important}
+.et_pb_menu_0_tb_header.et_pb_menu .nav li ul,
+.et_pb_menu_2_tb_header.et_pb_menu .nav li ul{border-color:rgba(255,255,255,0);background-color:#fff !important}
+.et_pb_menu_0_tb_header.et_pb_menu .et_mobile_menu,
+.et_pb_menu_2_tb_header.et_pb_menu .et_mobile_menu{border-color:rgba(255,255,255,0)}
+.et_pb_menu_0_tb_header.et_pb_menu .nav li ul.sub-menu a,
+.et_pb_menu_0_tb_header.et_pb_menu .nav li ul.sub-menu a:hover,
+.et_pb_menu_0_tb_header.et_pb_menu .et_mobile_menu a,
+.et_pb_menu_2_tb_header.et_pb_menu .nav li ul.sub-menu a,
+.et_pb_menu_2_tb_header.et_pb_menu .nav li ul.sub-menu a:hover,
+.et_pb_menu_2_tb_header.et_pb_menu .et_mobile_menu a{color:#059669 !important}
+.et_pb_menu_0_tb_header.et_pb_menu .nav li ul.sub-menu li.current-menu-item a,
+.et_pb_menu_0_tb_header.et_pb_menu .nav li ul.sub-menu li.current-menu-item a:hover,
+.et_pb_menu_2_tb_header.et_pb_menu .nav li ul.sub-menu li.current-menu-item a,
+.et_pb_menu_2_tb_header.et_pb_menu .nav li ul.sub-menu li.current-menu-item a:hover{color:#013f2b !important}
+.et_pb_menu_0_tb_header.et_pb_menu .et_mobile_menu,.et_pb_menu_0_tb_header.et_pb_menu .et_mobile_menu ul,
+.et_pb_menu_2_tb_header.et_pb_menu .et_mobile_menu,.et_pb_menu_2_tb_header.et_pb_menu .et_mobile_menu ul{background-color:#fff !important}
+.et_pb_menu_0_tb_header.et_pb_menu nav > ul > li li a:hover,
+.et_pb_menu_0_tb_header.et_pb_menu nav > ul > li li.current-menu-item a:hover,
+.et_pb_menu_2_tb_header.et_pb_menu nav > ul > li li a:hover,
+.et_pb_menu_2_tb_header.et_pb_menu nav > ul > li li.current-menu-item a:hover{opacity:1}
+.et_pb_menu_0_tb_header .et_pb_menu_inner_container > .et_pb_menu__logo-wrap,
+.et_pb_menu_0_tb_header .et_pb_menu__logo-slot,
+.et_pb_menu_2_tb_header .et_pb_menu_inner_container > .et_pb_menu__logo-wrap,
+.et_pb_menu_2_tb_header .et_pb_menu__logo-slot{width:30%;max-width:100%}
+.et_pb_menu_0_tb_header .et_pb_menu_inner_container > .et_pb_menu__logo-wrap .et_pb_menu__logo img,
+.et_pb_menu_0_tb_header .et_pb_menu__logo-slot .et_pb_menu__logo-wrap img,
+.et_pb_menu_2_tb_header .et_pb_menu_inner_container > .et_pb_menu__logo-wrap .et_pb_menu__logo img,
+.et_pb_menu_2_tb_header .et_pb_menu__logo-slot .et_pb_menu__logo-wrap img{height:auto;max-height:none}
+.et_pb_menu_0_tb_header .mobile_nav .mobile_menu_bar::before,
+.et_pb_menu_2_tb_header .mobile_nav .mobile_menu_bar::before{color:#fff}
+.et_pb_menu_0_tb_header .et_pb_menu__icon.et_pb_menu__search-button,
+.et_pb_menu_0_tb_header .et_pb_menu__icon.et_pb_menu__close-search-button,
+.et_pb_menu_0_tb_header .et_pb_menu__icon.et_pb_menu__cart-button,
+.et_pb_menu_2_tb_header .et_pb_menu__icon.et_pb_menu__search-button,
+.et_pb_menu_2_tb_header .et_pb_menu__icon.et_pb_menu__close-search-button,
+.et_pb_menu_2_tb_header .et_pb_menu__icon.et_pb_menu__cart-button{color:#059669}
+
+@media (max-width:768px){
+  .ib-test-s .ib-test-m .et_pb_menu_0_tb_header.et_pb_menu ul li:hover > a,
+  .et_pb_sticky .et_pb_menu_0_tb_header.et_pb_menu ul li.current-menu-item a{color:#059669 !important}
+}
+
+/* the two rules that actually stop the header doubling */
+@media only screen and (min-width:981px){
+  .et_pb_section_1_tb_header,.et_pb_menu_2_tb_header{display:none !important}
+}
+@media only screen and (min-width:768px) and (max-width:980px){
+  .et_pb_section_0_tb_header,.et_pb_menu_0_tb_header{display:none !important}
+}
+@media only screen and (max-width:767px){
+  .et_pb_section_0_tb_header,.et_pb_menu_0_tb_header{display:none !important}
+}
+
+@media only screen and (max-width:980px){
+  .et_pb_menu_0_tb_header.et_pb_menu ul li a,
+  .et_pb_menu_2_tb_header.et_pb_menu ul li a{font-family:"DM Sans",Helvetica,Arial,Lucida,sans-serif;font-weight:300;color:#059669 !important}
+  .et_pb_menu_0_tb_header.et_pb_menu ul li.current-menu-item a,
+  .et_pb_menu_2_tb_header.et_pb_menu ul li.current-menu-item a{color:#059669 !important}
+  .et_pb_menu_0_tb_header .et_pb_menu_inner_container > .et_pb_menu__logo-wrap,
+  .et_pb_menu_0_tb_header .et_pb_menu__logo-slot,
+  .et_pb_menu_2_tb_header .et_pb_menu_inner_container > .et_pb_menu__logo-wrap,
+  .et_pb_menu_2_tb_header .et_pb_menu__logo-slot{width:50%}
+}
+@media only screen and (max-width:767px){
+  .et_pb_menu_0_tb_header .et_pb_menu_inner_container > .et_pb_menu__logo-wrap,
+  .et_pb_menu_0_tb_header .et_pb_menu__logo-slot,
+  .et_pb_menu_2_tb_header .et_pb_menu_inner_container > .et_pb_menu__logo-wrap,
+  .et_pb_menu_2_tb_header .et_pb_menu__logo-slot{width:70%}
+}
