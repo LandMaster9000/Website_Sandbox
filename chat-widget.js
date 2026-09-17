@@ -172,8 +172,8 @@
   foot.appendChild(row);
   foot.appendChild(
     el("p", "clw-note",
-      'Automated assistant — it can be wrong. For a quote call <a href="' + PHONE_HREF + '">' +
-      PHONE + "</a>.")
+      'Automated assistant — it can be wrong. Chats may be reviewed to improve our answers. ' +
+      'For a quote call <a href="' + PHONE_HREF + '">' + PHONE + "</a>.")
   );
 
   panel.appendChild(head);
@@ -188,9 +188,18 @@
   var leadShown = false;
   var lastFocus = null;
 
+  // Random id for this browser tab's conversation, so the worker's log groups
+  // the turns together. It identifies nothing about the visitor.
+  var sid = "";
+  function newSid() {
+    var s = "";
+    for (var i = 0; i < 16; i++) s += "abcdefghijklmnopqrstuvwxyz0123456789"[Math.floor(Math.random() * 36)];
+    return s;
+  }
+
   function save() {
     try {
-      sessionStorage.setItem(STORE_KEY, JSON.stringify({ history: history, leadShown: leadShown }));
+      sessionStorage.setItem(STORE_KEY, JSON.stringify({ history: history, leadShown: leadShown, sid: sid }));
     } catch (e) { /* private mode, blocked storage — fine */ }
   }
   function load() {
@@ -201,6 +210,10 @@
       return v && Array.isArray(v.history) ? v : null;
     } catch (e) { return null; }
   }
+  (function () {
+    var v = load();
+    sid = (v && typeof v.sid === "string" && v.sid) || newSid();
+  })();
 
   function esc(s) {
     return String(s).replace(/[&<>"']/g, function (c) {
@@ -321,7 +334,7 @@
     fetch(ENDPOINT + "/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ messages: history.slice(-20) }),
+      body: JSON.stringify({ messages: history.slice(-20), sid: sid, page: location.pathname }),
     })
       .then(function (res) {
         if (!res.ok || !res.body) {
