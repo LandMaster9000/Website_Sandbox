@@ -7,14 +7,14 @@
    No JavaScript: the scrolling strips are CSS animations.
    =========================================================================== */
 
-/* --- header: solid bluestone bar (#4a5a68) --------------------------------
+/* --- header: solid bluestone bar (#3d4a57) --------------------------------
    Was dark green #013f2b until 2026-09-17; Tyler found the green fought the
    rest of the styling. The closing .rv-band sections stay green.
    ------------------------------------------------------------------------
    It used to be transparent over the hero photo, so the white menu text was
    only as readable as whatever photo sat behind it. Now it is its own band
    and the hero starts underneath it.                                        */
-.site-head{position:relative;height:auto;background:#4a5a68;
+.site-head{position:relative;height:auto;background:#3d4a57;
   box-shadow:0 2px 16px rgba(0,0,0,.18)}
 .site-head .wrap{height:108px;min-height:0}
 /* new logo is 854x170 (5:1), taller than the old 312x47 mark, so it is sized
@@ -37,7 +37,7 @@
   .site-logo img{width:auto;height:50px}
 }
 @media(max-width:980px){
-  .site-head{background:#4a5a68}
+  .site-head{background:#3d4a57}
   .site-logo img,.foot-logo img{width:auto;height:46px}
   .site-head .wrap{height:auto}
   .cl-page .cl-hero{padding-top:56px !important}
