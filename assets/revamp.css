@@ -101,6 +101,12 @@
 
 .rv-center{text-align:center;margin:30px 0 0}
 
+/* --- hub tab strip: centred ----------------------------------------------
+   Shrink the list to its content and centre it. When the tabs do not fit
+   (phones) it falls back to full width and scrolls sideways as before - a
+   plain justify-content:center would clip the first tabs off the left edge. */
+.cl-tabs ul{width:max-content;max-width:100%;margin:0 auto}
+
 /* --- services page ------------------------------------------------------- */
 .rv-hub h2 a{color:inherit;text-decoration:none}
 .rv-hub h2 a:hover{color:#059669}
